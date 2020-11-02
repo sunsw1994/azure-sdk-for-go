@@ -19,12 +19,23 @@ batch:
   - tag: package-vnet-2019-06-01-preview
 ```
 
+### Go one-package
+
+``` yaml $(go) && $(onepackage)
+batch:
+  - tag: package-spark-2019-11-01-preview
+  - tag: package-artifacts-2019-06-01-preview
+  - tag: package-access-control-2020-02-01-preview
+  - tag: package-monitoring-2019-11-01-preview
+  - tag: package-vnet-2019-06-01-preview
+```
+
 ### Tag:  package-spark-2019-11-01-preview and go
 
 These settings apply only when `--tag=package-spark-2019-11-01-preview --go` is specified on the command line.
 Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
 
-``` yaml $(tag) == 'package-spark-2019-11-01-preview' && $(go)
+``` yaml $(tag) == 'package-spark-2019-11-01-preview' && $(go) && $(separate)
 namespace: spark
 output-folder: $(go-sdk-folder)/services/preview/synapse/2019-11-01-preview/$(namespace)
 ```
@@ -34,7 +45,7 @@ output-folder: $(go-sdk-folder)/services/preview/synapse/2019-11-01-preview/$(na
 These settings apply only when `--tag=package-artifacts-2019-06-01-preview --go` is specified on the command line.
 Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
 
-``` yaml $(tag) == 'package-artifacts-2019-06-01-preview' && $(go)
+``` yaml $(tag) == 'package-artifacts-2019-06-01-preview' && $(go) && $(separate)
 namespace: artifacts
 output-folder: $(go-sdk-folder)/services/preview/synapse/2019-06-01-preview/$(namespace)
 ```
@@ -44,17 +55,17 @@ output-folder: $(go-sdk-folder)/services/preview/synapse/2019-06-01-preview/$(na
 These settings apply only when `--tag=package-access-control-2020-02-01-preview --go` is specified on the command line.
 Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
 
-``` yaml $(tag) == 'package-access-control-2020-02-01-preview' && $(go)
+``` yaml $(tag) == 'package-access-control-2020-02-01-preview' && $(go) && $(separate)
 namespace: accesscontrol
 output-folder: $(go-sdk-folder)/services/preview/synapse/2020-02-01-preview/$(namespace)
 ```
 
-### Tag: package-monitoring-2019-11-01-preview
+### Tag: package-monitoring-2019-11-01-preview and go
 
 These settings apply only when `--tag=package-monitoring-2019-11-01-preview --go` is specified on the command line.
 Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
 
-``` yaml $(tag) == 'package-monitoring-2019-11-01-preview' && $(go)
+``` yaml $(tag) == 'package-monitoring-2019-11-01-preview' && $(go) && $(separate)
 namespace: monitoring
 output-folder: $(go-sdk-folder)/services/preview/synapse/2019-11-01-preview/$(namespace)
 ```
@@ -64,7 +75,57 @@ output-folder: $(go-sdk-folder)/services/preview/synapse/2019-11-01-preview/$(na
 These settings apply only when `--tag=package-vnet-2019-06-01-preview --go` is specified on the command line.
 Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
 
-``` yaml $(tag) == 'package-vnet-2019-06-01-preview' && $(go)
+``` yaml $(tag) == 'package-vnet-2019-06-01-preview' && $(go) && $(separate)
 namespace: managedvirtualnetwork
 output-folder: $(go-sdk-folder)/services/preview/synapse/2019-06-01-preview/$(namespace)
+```
+
+### Tag:  package-spark-2019-11-01-preview and go and onepackage
+
+These settings apply only when `--tag=package-spark-2019-11-01-preview --go` is specified on the command line.
+Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
+
+``` yaml $(tag) == 'package-spark-2019-11-01-preview' && $(go) && $(onepackage)
+namespace: synapse
+output-folder: $(go-sdk-folder)/services/preview/synapse/2020-02-01-preview/$(namespace)/spark
+```
+
+### Tag:  package-artifacts-2019-06-01-preview and go and onepackage
+
+These settings apply only when `--tag=package-artifacts-2019-06-01-preview --go` is specified on the command line.
+Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
+
+``` yaml $(tag) == 'package-artifacts-2019-06-01-preview' && $(go) && $(onepackage)
+namespace: synapse
+output-folder: $(go-sdk-folder)/services/preview/synapse/2020-02-01-preview/$(namespace)/artifacts
+```
+
+### Tag:  package-access-control-2020-02-01-preview and go and onepackage
+
+These settings apply only when `--tag=package-access-control-2020-02-01-preview --go` is specified on the command line.
+Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
+
+``` yaml $(tag) == 'package-access-control-2020-02-01-preview' && $(go) && $(onepackage)
+namespace: synapse
+output-folder: $(go-sdk-folder)/services/preview/synapse/2020-02-01-preview/$(namespace)/accesscontrol
+```
+
+### Tag: package-monitoring-2019-11-01-preview and go and onepackage
+
+These settings apply only when `--tag=package-monitoring-2019-11-01-preview --go` is specified on the command line.
+Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
+
+``` yaml $(tag) == 'package-monitoring-2019-11-01-preview' && $(go) && $(onepackage)
+namespace: synapse
+output-folder: $(go-sdk-folder)/services/preview/synapse/2020-02-01-preview/$(namespace)/monitoring
+```
+
+### Tag:  package-vnet-2019-06-01-preview and go and onepackage
+
+These settings apply only when `--tag=package-vnet-2019-06-01-preview --go` is specified on the command line.
+Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
+
+``` yaml $(tag) == 'package-vnet-2019-06-01-preview' && $(go) && $(onepackage)
+namespace: synapse
+output-folder: $(go-sdk-folder)/services/preview/synapse/2020-02-01-preview/$(namespace)/managedvirtualnetwork
 ```
